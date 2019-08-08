@@ -4,7 +4,9 @@ let menushowing=false;
 
 
 terminal.addEventListener("focus", function(){
-  terminal.value = "$ =>";
+
+  restartLine();
+
 });
 terminal.addEventListener("input",(ev)=>{
     //alert(terminal.setSelectionRange(4,4))
