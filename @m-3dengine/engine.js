@@ -1,3 +1,15 @@
+setCss('st.css');
+
+function setCss(filename){
+  var head = document.getElementsByTagName('head')[0];
+
+  var style = document.createElement('link');
+  style.href = filename;
+  style.type = 'text/css';
+  style.rel = 'stylesheet';
+  head.append(style);
+  return true;
+}
 var ObjPromise = import('./Objects.js');
 var Camara, Viewport, Mesh;
 console.log(Camara);
@@ -6,7 +18,7 @@ console.log(Camara);
 
 function engine(){
     this.cargarmodelo = cargarmodelo;
-    this.setPlayerCamara = setPlayerCamara;
+    this.setFPV = setFPV;
     this.mobileControl = mobileControl;
     this.setRequestedColor = setRequestedColor;
     this.aplicarColor = aplicarColor;
@@ -22,7 +34,9 @@ function engine(){
     var context;
     var dx ;
     var dy;
-    var scene = [] ;
+    var scene = new Array();
+    this.scene = scene;
+   
     var actualObj
     var scalar =false;
     var mover = true;
@@ -38,6 +52,8 @@ function engine(){
     var viewport;
     var cubo;
     var fi;
+    var zoomFactor = 0.004;
+    var t;
       var gl;
     //camaras y de""mas
 
@@ -47,20 +63,20 @@ function engine(){
       camara.pos.z = 2;
       camara.rotation.z = 3.1416;
       camara.type = 'self';
-
+      t = this.terminal.writeHistory;
       viewport = new Viewport();
       viewport.pos= {x:0, y:150, z:camara.pos.z+100};
       initialize3dCanvas();
 
     }
-    function setPlayerCamara() {
+    function setFPV() {
        camaras[0] = [camara, viewport];
        camara = new Camara();
        camara.pos.z = 12;
        camara.pos.y = 0;
        camara.rotation.z = 3.1416;
        camara.type = 'third-p';
-       console.log(`obj p ${scene[actualObj].getTargetOrigin()}`)
+       t(`Object Origin in 3d coordinates:  ${scene[actualObj].getTargetOrigin()}`);
        camara.target = scene[actualObj].getTargetOrigin();
        viewport.pos= {x:0, y:150, z:camara.pos.z+100};
        scene[actualObj].camara = camara;
@@ -114,7 +130,7 @@ function engine(){
 
     function cargarmodelo(file){
       load3dObj(file).then((mod)=>{
-        //console.log(mod);
+        //t(mod);
         var md = new Mesh(mod, file, camara);
         cubo = mod;
         fi = file;
@@ -145,7 +161,7 @@ function engine(){
           var r = Math.floor(Math.random()*(255 - 0)) + + 18;
           var g  = Math.floor(Math.random()*(255 - 0)) + + 18;
           var b  = Math.floor(Math.random()*(255 - 0)) + + 18;
-          //console.log(r, g, b);
+          //t(r, g, b);
            var rgb ={r:r, g:g, b:b};
            var scal =  Math.floor(Math.random()*(2 - 0.6)) + + 0.6;
            var x = Math.floor(Math.random()*(30 - - 20)) + + - 20;
@@ -281,14 +297,14 @@ function engine(){
                   if(editMode=='vertices'){
 
                     var vertices =  scene[actualObj].getVertices();
-                    //console.log(vertices);
+                    //t(vertices);
                     for(var i=0;i<vertices.length;i++){
                         var ver = vertices[i];
-                        //console.log('vertice', ver, i);
+                        //t('vertice', ver, i);
                         var P = project(ver, camara);
-                        //console.log('vertice'+i, P);
+                        //t('vertice'+i, P);
                         if((P.x+dx)>0&&(P.y+dy)>0){
-                          //console.log(P);
+                          //t(P);
                           var diferenciaX  = x-(P.x+dx);
                           var diferenciaY  = y-(P.y+dy);
                           if(diferenciaX<0){
@@ -297,13 +313,13 @@ function engine(){
                           if(diferenciaY<0){
                             diferenciaY *= -1;
                           }
-                        //  console.log(x, y,  P, diferenciaX, diferenciaY);
+                        //  t(x, y,  P, diferenciaX, diferenciaY);
 
 
                           if(diferenciaX<20&&diferenciaY<20){
-                            //console.log(P.x+dx, P.y+dy, i);
+                            //t(P.x+dx, P.y+dy, i);
                             selectedVer = i;
-                            console.log("selected vert: ", i, Math.round(P.x+dx), Math.round(P.y+dy));
+                            t("selected vert: ", i, Math.round(P.x+dx), Math.round(P.y+dy));
 
 
                             break;
@@ -361,24 +377,24 @@ function engine(){
                 if(changedTouch.actual.x<0&&changedTouch.actual.y<0){
 
                   sumTranslate({x:(average), y:(average), z:0});
-                  console.log('T');
+                  t('T');
                 }else if(changedTouch.actual.x<0&&changedTouch.actual.y>0){
                   sumTranslate({x:(diffX), y:-(diffY), z:0});
-                  console.log('M');
+                  t('M');
 
                 }else if(changedTouch.actual.x>0&&changedTouch.actual.y>0){
 
                     sumTranslate({x:-(average), y:-(average), z:0});
-                  console.log('H');
+                  t('H');
                 }else if(changedTouch.actual.x>0&&changedTouch.actual.y<0){
                     sumTranslate({x:-(diffX), y:(diffY), z:0});
-                  console.log('W');
+                  t('W');
                 }
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 */
                 //renderScene(scene);}, true);
         canvas.addEventListener( 'wheel', function(e) {
-          //console.log('wheling')
+          //t('wheling')
            if(!rendering){
 
             context.clearRect(0, 0, canvas.width, canvas.height);
@@ -389,7 +405,7 @@ function engine(){
                       console.log('scalando: ', scene[actualObj].name);
                       scene[actualObj].scala += 0.01;
                     }else{
-                      camara.zoom += 0.4;
+                      camara.zoom += zoomFactor;
                     }
 
                     doZoom = true;
@@ -409,7 +425,7 @@ function engine(){
                       }
                       console.log('top_minimun_scala');
                     }else{
-                    camara.zoom -= 0.4;
+                    camara.zoom -= zoomFactor;
 
                   }
                     doZoom = true;
@@ -532,7 +548,7 @@ function engine(){
 
     function load3dObj(name){
       return new Promise((resolve, reject)=>{
-        console.log('loading', name);
+        t(`loading ${name}`);
         var fileName = './@m-3dengine/3dAssets/pan/'+name+'.txt';
         var rawFile = new XMLHttpRequest();
         rawFile.open("GET", fileName, true);
@@ -627,7 +643,7 @@ function engine(){
 
 
     function renderScene(scena){
-      //console.log('renderizando escena');
+      //t('renderizando escena');
       camara.target = scene[actualObj].getTargetOrigin();
       rendering = true;
 
@@ -635,31 +651,31 @@ function engine(){
         context.lineWidth = '1';
         context.clearRect(0, 0, canvas.width, canvas.height);
         //var axis = dibujarWorldAxis(context);
-        console.log('Camara pos: ', camara.pos);
+        t(`Camara pos: ${Object.values(camara.pos)}`);
 
         var objR= Object.values(scene[actualObj].ObjRotation);
         var objT = Object.values(scene[actualObj].ObjTranslation);
         console.log(`%c${scene[actualObj].name} status:` , 'background:rgb(255,100,0);color: #ffffff; font-weight: bold;')
         console.log(`position: x:${objT[0]} y:${objT[1]} z:${objT[2]}\nrotation: x:${objR[0]} y:${objR[1]} z:${objR[2]}`);
-        //console.log('Viewport pos: ', viewport.pos);
+        //t('Viewport pos: ', viewport.pos);
         var object_strokeLine = 'rgba(0,0,0, 1)';
         scena.forEach(object=>{
             var rgb = object.getColor();
             context.strokeStyle = object_strokeLine;
             context.fillStyle = 'rgba('+ rgb.r+','+ rgb.g+','+ rgb.b+', 1)';
           renderMesh(object.mergeMesh(camara), context, dx, dy, [rgb.r, rgb.g, rgb.b], object.getOrigin(), object.getAxis(),object.name, object.getRaxis(0));
-            //console.log(object.ObjTranslation);
-            //console.log(object);
-            //console.log(object, object.mergeMesh());
+            //t(object.ObjTranslation);
+            //t(object);
+            //t(object, object.mergeMesh());
         });
 
 
-        //console.log(, viewport.rotation);
+        //t(, viewport.rotation);
 
         if(editMode=='vertices'){
           drawVertices();
         }else{
-          //console.log('escena renderizada');
+          //t('escena renderizada');
           reClick();
           rendering = false;
         }
@@ -719,7 +735,7 @@ function engine(){
         var ax = ['x', 'y', 'z'];
         context.lineWidth = '1';
 
-        //console.log(raxis);
+        //t(raxis);
         //dibujar axis
         if(name==scene[actualObj].name){
 
@@ -733,7 +749,7 @@ function engine(){
           for(var k=0;k< raxis.length;k++){
             var rP = project(raxis[k], camara);
             rxs.push(rP);
-            //console.log(rP.x)
+            //t(rP.x)
             //se dibujan los puntos de los vertices
             context.strokeStyle = "rgba(233, 35, 102,1)"
             context.rect(Math.round(rP.x+dx), Math.round(rP.y+dy),2,2);
@@ -752,7 +768,7 @@ function engine(){
           context.closePath();
 
 
-          console.log(`${rxs[0].x+dx}`);
+          //t(`${rxs[0].x+dx}`);
           // distancias para el ellipse
 
           var dov1 =Math.round(Math.sqrt(Math.pow((rxs[0].x-Or.x),2)+Math.pow(rxs[0].y-Or.y,2)));
@@ -766,7 +782,7 @@ function engine(){
           var dovs = {dov1, dov2, dov3, dov4};
 
 
-          console.log(dovs);
+          t(`Rotation axis distances: ${Object.values(dovs)}`);
 
           //Definir angulos de rotacion para los elipses
           var det = dx*0.4;
@@ -805,11 +821,11 @@ function engine(){
           A1P = (Number.isNaN(A1P)) ? 0:A1P;
           A1P = (A1P*(180/Math.PI));
           var AngDis1 = 360-A1+A1P>360?(360-A1+A1P)-360:A1P;
-          console.log(`%cAngDis1: ${AngDis1}`, 'color: green;');
+          t(`Distance 1 Angle: ${AngDis1}`);
 
 
           //A1 = A1>0?A1:0;
-          console.log(`%cAngulo del primer triangulo: ${A1}`, 'color: purple');
+          t(`First triangle Angle: ${A1}`);
           
           //dibujar triangulo
           context.strokeStyle = 'green';
@@ -820,13 +836,13 @@ function engine(){
           context.lineTo(rxs[2].x+dx, rxs[2].y+dy);
           context.stroke();
           context.closePath();
-          console.log('%ctriangulo1: ', 'color: green;');
-          console.log(dov1, a1, det);
+          
+          
           var xMin = Math.min(...[rxs[2].x+dx,rxs[0].x+dx]);
           var xMax = Math.max(...[rxs[2].x+dx,rxs[0].x+dx]);
           var yMin = Math.min(...[rxs[2].y+dy,rxs[0].y+dy]);
           var yMax = Math.max(...[rxs[2].y+dy,rxs[0].y+dy]);
-          console.log({xMin, xMax, yMin, yMax});
+         
           var O = {
             x: Math.round(((xMax-xMin)/2)+(xMin)) ,
             y: Math.round(((yMax-yMin)/2)+(yMin))
@@ -860,12 +876,12 @@ function engine(){
           context.closePath
           
           
-          //console.log(`crossed: ${Object.values(cross)}`);
+          //t(`crossed: ${Object.values(cross)}`);
           console.log(`%cO para el primer triangulo: ${Object.values(O)}`, 'color: blue;');
 
 
 
-          //console.log(cardPoints);
+          //t(cardPoints);
            //variable determinante de los triangulos
           // var T1 =
           // var T2
@@ -920,7 +936,7 @@ function engine(){
             var s = project(axis[i], camara);
             context.lineTo(Math.round(s.x+dx), Math.round(s.y+dy));
 
-            //console.log('dibujando', axis[i], s.x+dx, s.y+dy);
+            //t('dibujando', axis[i], s.x+dx, s.y+dy);
             context.rect(Math.round(s.x+dx), Math.round(s.y+dy), 1.4, 1.4);
             context.font = "8px Arial";
             context.fillText(ax[i], Math.round(s.x+dx), Math.round(s.y+dy));
@@ -936,17 +952,17 @@ function engine(){
     }
 
     function drawVertices(){
-      console.log('dibujando vertices');
+      t('dibujando vertices');
 
       context.strokeStyle = 'rgba(247, 182, 17, 1)';
       var vertices =  scene[actualObj].getVertices();
-      //console.log(vertices);
+      //t(vertices);
       //dibujando los puntos de cada vertice
 
       for(var i=0;i<vertices.length;i++){
         var ver = vertices[i];
           var P = project(ver, camara);
-          //console.log(P);
+          //t(P);
           context.beginPath();
           context.lineWidth = '4';
           context.rect(P.x+dx, P.y+dy, 1, 1);
@@ -971,7 +987,7 @@ function engine(){
       }
 
       rendering = false;
-      console.log('escena renderizada');
+      t('escena renderizada');
     }
 
     function nextObj(){
@@ -979,7 +995,7 @@ function engine(){
         if(actualObj>scene.length-1){
           actualObj = 0;
         }
-        console.log('selected Obj:=>', scene[actualObj].name);
+        t(`selected Obj:=> ${scene[actualObj].name}`);
         log.innerHTML= 'selected Obj:=>'+ scene[actualObj].name;
         document.getElementById('actColor').style.backgroundColor = 'rgb('+scene[actualObj].rgb.r+','+scene[actualObj].rgb.g+','+scene[actualObj].rgb.b+')';
     }
@@ -1001,7 +1017,7 @@ function engine(){
 
            }else{
              if(rotar){
-               console.log('rotando camara');
+               t('rotando camara');
                   sumRotate({x:0, y:-0.19625, z:0});
              }else{
                  sumTranslate({x:-1, y: 0, z:0});
@@ -1179,7 +1195,7 @@ function engine(){
                 scalar = false;
               }
               rendering = false;
-              console.log('scalar: ', scalar);
+              t(`scalar: ${scalar}`);
               log.innerHTML = 'scalar..';
               break;
           case 33:
@@ -1197,6 +1213,7 @@ function engine(){
               mover = false;
               scalar = false;
               log.innerHTML = 'rotar..';
+              t(`Rotar ${scene[actualObj].name}`);
               rendering = false;
               break;
           case 84:
@@ -1228,9 +1245,9 @@ function engine(){
         if(cam){
           if(code == 77){
 
-            camara.zoom -= 0.4;
+            camara.zoom -= zoomFactor;
           }else{
-            camara.zoom += 0.4;
+            camara.zoom += zoomFactor;
           }
           renderScene(scene);
         }else{
@@ -1246,6 +1263,7 @@ function engine(){
 
         }else{
           cam = false;
+          t(`${scene[actualObj].name} selected`);
           document.getElementById('camFocus').style.backgroundColor = '#424240';
           document.getElementById('objFocus').style.backgroundColor = '#8c8c88';
         }
@@ -1388,10 +1406,10 @@ function engine(){
 
 
     function acelerate(){
-      console.log('Begin motion');
+      t('Begin motion');
       scene[actualObj].acceleration = 0.6;
       scene[actualObj].velocity = 0;
-      //console.log(obj.axis[0][2]);
+      //t(obj.axis[0][2]);
       update();
 
     }
@@ -1414,12 +1432,12 @@ function engine(){
 
         var mo = motionValues(obj.transform(obj.axis[2]), obj.transform([obj.origin.x, obj.origin.y, obj.origin.z] ));
 
-        /*console.log('velocidad:', obj.velocity, '\nframe count: ', frame,
+        /*t('velocidad:', obj.velocity, '\nframe count: ', frame,
                     'axisZ pos: ', obj.transform(obj.axis[2]),
                     'obj origin: ', obj.transform([obj.origin.x, obj.origin.y, obj.origin.z]),
                     'motion values: ', mo);*/
 
-        //console.log({x:obj.ObjTranslation.x+mo[0], y:obj.ObjTranslation.y+mo[1], z:obj.ObjTranslation.z+mo[2]});
+        //t({x:obj.ObjTranslation.x+mo[0], y:obj.ObjTranslation.y+mo[1], z:obj.ObjTranslation.z+mo[2]});
         var x = round((mo.obj.x/frameRate), 2);
         var y = round((mo.obj.y/frameRate), 2);
         var z = round((mo.obj.z/frameRate), 2);
@@ -1429,14 +1447,14 @@ function engine(){
         var zc = round((mo.cam.z/frameRate), 2);
 
 
-        //console.log('mo:',{x:x,y:y,z:z}, mo,
+        //t('mo:',{x:x,y:y,z:z}, mo,
          //           'Obj tran: ', obj.ObjTranslation);
         scene[actualObj].setTranslation({x:x,y:y, z:z});
         //camara.pos = {x:xc,y:yc, z:zc};
 
         if(frame%15==0){
           console.log(frame);
-          //console.log('mo:',{x:x,y:y,z:z});
+          //t('mo:',{x:x,y:y,z:z});
         }
 
         //sumTranslate({x:mo[0],y:mo[1], z:mo[2]});
@@ -1449,7 +1467,7 @@ function engine(){
       },fps );
     }
     function motionValues(axis, origin){
-     // console.log(axis, origin);
+     // t(axis, origin);
         var xdiff = round(axis[0]-origin[0], 2);
         var ydiff = round(axis[1]-origin[1], 2);
         var zdiff = round(axis[2]-origin[2], 2);
@@ -1492,37 +1510,39 @@ function engine(){
         zcam = round((axis[2]-camDistance)*origin[2], 2);
 
         //valores de la camara
-        console.log(xcam, ycam, zcam);
-        console.log(scene[actualObj].getTargetOrigin());
+        t(xcam, ycam, zcam);
+        t(scene[actualObj].getTargetOrigin());
         var xc = scene[actualObj].getTargetOrigin()[0]+xcam;
         var yc  = scene[actualObj].getTargetOrigin()[1]+ycam;
         var zc  = scene[actualObj].getTargetOrigin()[2]+zcam;
 
 
-        console.log({cam: {x: xc  ,y:yc  ,z:zc  }, obj:  {x: xdiff ,y: ydiff ,z:zdiff  } });
+        t({cam: {x: xc  ,y:yc  ,z:zc  }, obj:  {x: xdiff ,y: ydiff ,z:zdiff  } });
         return {cam: {x: xc  ,y:yc  ,z:zc  }, obj:  {x: xdiff ,y: ydiff ,z:zdiff  } };
         */
     }
 
 
     function stopMotion(){
-      console.log('Motion stoped');
+      t('Motion stoped');
       clearInterval(upd);
       frame = 0;
     }
+
+    
 }
 
 function getEngine(){
-  return Mesh!=undefined? engine
+  return(Mesh!=undefined? engine
                    : ObjPromise.then(function(prom){
                       var Objects = new prom.default;
-                      //console.log(Objects);
+                      //t(Objects);
                       Camara = Objects.Camara;
                       Viewport = Objects.Viewport;
                       Mesh = Objects.Mesh;
-                      //console.log(Camara, Mesh, Viewport);
+                      //t(Camara, Mesh, Viewport);
                       return  new engine();
-                    });
+                    }));
     
 }
 export default getEngine();

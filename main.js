@@ -1,79 +1,25 @@
-let terminal = document.getElementById("terminal");
+var TerminalPromise = import('./@m-terminal/ter.js');
+let terminal;
+TerminalPromise.then(function(terminalModule){
+  //console.log(terminalModule.default); 
+  terminal = terminalModule.default;
+  terminal.init(this);
+  console.log('Terminal initialized');
+  
+});
+
 let menuButton = document.getElementById("menu");
 let menushowing=false;
 
 
-terminal.addEventListener("focus", function(){
-
-  restartLine();
-
-});
-terminal.addEventListener("input",(ev)=>{
-    //alert(terminal.setSelectionRange(4,4))
-    //alert(terminal.value.length)
-    if(terminal.value.length<4){
-      terminal.value = "$ =>";
-      
-    }
-    setTimeout(function(){
-      terminal.setSelectionRange(terminal.value.length,terminal.value.length);
-    },1);
-});
-
-function restartLine(){
-  terminal.value = "$ =>";
-}
-let history =[];
 
 
-document.addEventListener("keydown", function(e){
-    if(e.keyCode==13){
-      var command = terminal.value.split(">")[1].split(" ");
-      if(window[command[0]]){
-        //alert(`${command.join(" ")}\nsalomon`);
-        //alert ((history.prototype))
-        writeHistory(...command);
-       
-        
-        
-       // alert(line);
-       
-        
-        window[command[0]](command[1]);
-        
-      }else{
-        alert(`No existe la funcion ${command[0]}`);
-        restartLine();
-      }
-    }
-});
 
-function init(pedo){
-  //alert(pedo);
-  writeHistory("engine started")
-  restartLine()
-}
-function writeHistory(l){
-  let date = new Date();
-  
-  history.push([`${date.getUTCHours()}:${date.getUTCMinutes()}-${date.getUTCMilliseconds()} ${l}\n`]);
-  
-  let hs = document.getElementById("historic");
-  var line="";
-  for(let h of history){
-    //alert(h[0]);
-    line +=h[0];
-    
-    
-  }
-  hs.value= line;
-  hs.scrollTop=hs.scrollHeight;
-  
-  return true;
-}
 
-function comer(mierda){
-  alert(mierda)
+
+
+function init(){
+  terminal.writeHistory("engine started")
   restartLine()
 }
 

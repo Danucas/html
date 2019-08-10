@@ -1,4 +1,6 @@
-
+:root{
+	--panel-button-size: 6vw;
+}
 #player{
 	width: 100vw;
 	height:80vw;
@@ -46,7 +48,7 @@
 	border-radius: 50vw;
 	position: absolute;
 	margin-left: 78vw;
-	margin-top: 80vw;
+	margin-top: 0vw;
 	display: block;
 
 }
@@ -62,7 +64,7 @@
 	border-radius: 50vw;
 	position: absolute;
 	margin-left: 56vw;
-	margin-top: 80vw;
+	margin-top: 0vw;
 	display: block;
 	font-size: 4vw;
 	color: grey
@@ -91,7 +93,7 @@
 	border-radius: 50vw;
 	position: absolute;
 	margin-left: 18vw;
-	margin-top: 80vw;
+	margin-top: 0vw;
 	display: none;
 }
 
@@ -135,7 +137,7 @@
 }
 #photoImg{
 
-	margin-top: 80vw;
+	margin-top: 0vw;
 	margin-left: 0vw;
 	width: 36vw;
 	height: 20vw;
@@ -147,7 +149,7 @@
 }
 #photoImg2{
 
-	margin-top: 80vw;
+	margin-top: 0vw;
 	margin-left: 38vw;
 	width:  36vw;
 	height: 20vw;
@@ -169,12 +171,18 @@
 }
 
 #canvas3d{
-	width: 100vw;
-	height: 100vw;
+	height: 100%;
+	padding-right: 100%;
+	
 	object-fit: contain;
-	background-color: white;
-
-	padding: 0;
+	background-color:white;
+	position: relative;
+	
+}
+#canvas3d:after {
+	
+	background-color:attr(color);
+	
 }
 
 
@@ -182,11 +190,11 @@
 
 
 #drawing{
-	position: absolute;
-	width: 100vw;
-	height: 180vw;
+	
+	width: auto;
+	height: auto;
   margin-top: 0;
-	margin-left: 2vw;
+	
 	display: block;
 	background-color: #2e2e30;
 	overflow-y: hidden;
@@ -198,9 +206,6 @@
  color: yellow;
  width: 18vw;
  height: 6vw;
- position: absolute;
- margin-top: 94vw;
- margin-left: 80vw;
  font-size: 1.8vw;
  text-align: left;
  font-family: 'Assistant', sans-serif;
@@ -216,11 +221,10 @@
 #console{
 	height: 6vw;
 	width: 18vw;
-	margin-top: 94vw;
-	margin-left: 60vw;
+	
 	font-size: 1.8vw;
 	text-align: left;
-	position: absolute;
+	 
   font-family: 'Assistant', sans-serif;
 	padding-left: 2vw;
 	padding-bottom: 1vw;
@@ -230,11 +234,13 @@
 
 }
 #contrs{
-	width: 100vw;
-	height: 100vw;
-	margin-top: 100vw;
+	
+	height: 100%;
+	padding-left: 100%;
+	
 
-	position: absolute;
+	
+
 
 	overflow-y: scroll;
 	overflow-x: scroll;
@@ -244,12 +250,10 @@
 
 #controls_3d{
   background-color: grey;
-	padding-top: 2vw;
-	min-height: 6vw;
-	height:100vw;
-	width: 100vw;
-	overflow-y: scroll;
-	overflow-x: hidden;
+  width: 100%;
+  padding-bottom: 100%;
+	
+	overflow: hidden;
 
 
 }
@@ -259,151 +263,143 @@
 }
 
 .keyCont{
-	width: 36vw;
-	height: 36vw;
-	position: absolute;
-
-	margin-top: 0vw;
-	margin-left:12vw;
+	width: auto;
+	
+	
+	
 }
 
 
 
 .keyCont button{
-	width: 10vw;
-	height: 10vw;
+	width: var(--panel-button-size);
+	height: var(--panel-button-size);
 	border-style: none;
 	background-color: transparent;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	position: absolute;
+	
 	padding: 1vw;
 
 }
 
 .motionPanel{
-	width: 12vw;
-	height: 56vw;
-	position: absolute;
+	
+	
+	display: block;
+	
+	
 
-	margin-top: 2vw;
-	margin-left:44vw;
 }
 .motionPanel button{
-	width: 8vw;
-	height: 8vw;
+	width: var(--panel-button-size);
+	height: var(--panel-button-size);
 	border-style: none;
 	background-color: rgba(10, 10, 10, 0.2);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	position: absolute;
+	
 	padding: 1vw;
 	border-radius: 50%;
+	
 
 }
 .zaxis_cont {
-	width: 12vw;
-	height: 24vw;
-	position: absolute;
+	width: var(--panel-button-size);
+	
+	
 
-	margin-top: 2vw;
-	margin-left: 2vw;
+	
 
 }
 .zaxis_cont button{
-	width: 8vw;
-	height: 8vw;
+	width: var(--panel-button-size);
+	height: var(--panel-button-size);
 	border-style: none;
 	background-color: transparent;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	position: absolute;
+	
 	padding: 1vw;
 
 }
 .modo_cont{
-	width: 34vw;
-	height: 12vw;
-	position: absolute;
-	margin-top: 13vw;
-	margin-left: 60vw;
+	
 }
 .modo_cont button{
-	width: 10vw;
-	height: 10vw;
+	width: var(--panel-button-size);
+	height: var(--panel-button-size);
 	border-style: none;
 	background-color: transparent;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	position: absolute;
+	
 	padding: 2vw;
 }
 .focus{
 	width: 34vw;
-	height: 12vw;
-	margin-top:2vw;
-	margin-left: 60vw;
-	position: absolute;
+	
+	
+	
 }
 .focus button{
-	width: 10vw;
-	height: 10vw;
+	width: var(--panel-button-size);
+	height: var(--panel-button-size);
 	background-color: #424240;
 	border-radius: 50vw;
 	border-style: none;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	position: absolute;
+	
 	padding: 2vw;
 
 }
 .toEdit{
-	width: 34vw;
-	height: 6vw;
-	position: absolute;
-	margin-top: 24vw;
-	margin-left: 60vw;
+	
+	
+	display: block;
+	
+	
 }
 .toEdit button{
-	width: 10vw;
-	height: 10vw;
+	width: var(--panel-button-size);
+	height: var(--panel-button-size);
 	border-style: none;
 	background-color: transparent;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	position: absolute;
+	
 	padding: 2vw;
 }
 .material{
 	width: 34vw;
 	height: 12vw;
-	position: absolute;
-	margin-top:36vw;
-	margin-left: 60vw;
+	
+	
 }
 .material button{
-	width: 10vw;
-	height: 10vw;
+	width: var(--panel-button-size);
+	height: var(--panel-button-size);
 	border-style: none;
 	background-color: transparent;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	position: absolute;
+	
 	padding: 2vw;
 }
 
 #colorPicker{
 	width: 40vw;
 	height: 60vw;
-  margin-top: 5vw;
-	position: absolute;
+  	margin-top: 5vw;
+	
 	margin-left: 10vw;
 	display: none;
 	background-color: grey;
@@ -413,9 +409,7 @@
 #actColor{
 	width: 8vw;
 	height: 8vw;
-	position: absolute;
-	margin-left: 24vw;
-	margin-top: 1vw;
+	
 }
 #saturation{
 	width: 40vw;
