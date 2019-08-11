@@ -1,4 +1,4 @@
-setCss('st.css');
+//setCss('st.css');
 
 function setCss(filename){
   var head = document.getElementsByTagName('head')[0];
@@ -80,6 +80,7 @@ function engine(){
        camara.target = scene[actualObj].getTargetOrigin();
        viewport.pos= {x:0, y:150, z:camara.pos.z+100};
        scene[actualObj].camara = camara;
+       console.log(Object.entries(scene[actualObj].camara));
        renderScene(scene);
 
     }
@@ -155,7 +156,7 @@ function engine(){
     function generateWorld(){
         var  cantObjs = 20;
         for(var i=0; i<cantObjs; i++){
-          var newCube = new Mesh(cubo, fi+i );
+          var newCube = new Mesh(cubo, fi+i ,camara);
           var max = 50;
           var min = 12;
           var r = Math.floor(Math.random()*(255 - 0)) + + 18;
@@ -171,6 +172,7 @@ function engine(){
           newCube.ObjTranslation = {x: x , y: y, z: b};
           newCube.scala = scal;
           newCube.setColor({r:105, g:100, b:30});
+          
           scene.push(newCube);
         }
         scene.reverse();
@@ -645,6 +647,7 @@ function engine(){
     function renderScene(scena){
       //t('renderizando escena');
       camara.target = scene[actualObj].getTargetOrigin();
+      scene[actualObj].camara = camara;
       rendering = true;
 
         context.strokeStyle = 'rgba(86, 35, 23, 1)';
@@ -782,7 +785,10 @@ function engine(){
           var dovs = {dov1, dov2, dov3, dov4};
 
 
-          t(`Rotation axis distances: ${Object.values(dovs)}`);
+          //t(`Rotation axis distances: ${Object.values(dovs)}`);
+          //console.trace();
+          var ln  = new Error().stack.split('js:')[1].split(':')[0];
+          t(Object.values(ln));
 
           //Definir angulos de rotacion para los elipses
           var det = dx*0.4;
@@ -1415,7 +1421,7 @@ function engine(){
     }
     var frame = 0;
     var fps = round(1000/15, 0);
-    var frameRate = 15
+    var frameRate = 0.2;
     var upd;
     var initDif;
     function update(){
@@ -1423,7 +1429,7 @@ function engine(){
 
       upd = setInterval(function(){
         var obj = scene[actualObj];
-        var maxSpeed = 2;
+        var maxSpeed = 6;
 
         if(obj.velocity<maxSpeed){
           obj.velocity += round(obj.acceleration/fps, 2);

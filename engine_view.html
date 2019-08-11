@@ -140,9 +140,9 @@
 												background-repeat: no-repeat;
 												background-image: url(src/logotipo_dnar.png);
                                                  background-size: contain;background-position: center center;"></div>
-	<img style="width: 4vw;height: 4vw;left:48vw;
+	<img id="gif" style="width: 4vw;height: 4vw;left:48vw;
 	position: absolute;
-	top:74%;" src="src/wait.gif">	<h1 id="loadingTitle" style="font-family: 'Assistant', sans-serif;color:#ffffff;width: 100vw;font-size: 1.6vw;top: 80%;text-align: center;position: absolute;margin-left: 0;">Loading...</h1>
+	top:74%;" src="src/wait.gif">	<h1 id="loadText" style="font-family: 'Assistant', sans-serif;color:#ffffff;width: 100vw;font-size: 1.6vw;top: 80%;text-align: center;position: absolute;margin-left: 0;">Loading...</h1>
 
 </div>
 <script type="text/javascript">
@@ -155,20 +155,25 @@
             	|| navigator.userAgent.match(/BlackBerry/i)
             	|| navigator.userAgent.match(/Windows Phone/i)
              	){
-		 			var prefImg = "position:absolute;width:26%;height: 26%;margin-left:37%;top:37%;size: contain;background-repeat: no-repeat; background-size: contain;            background-position: center center;"
-		 			var prefTitle = "position:absolute;font-family: 'Assistant',sans-serif;color: #ff8d56;width: 102vw;font-size: 5.2vw;top: 56%;text-align: center;";
+
+					var foo = setCss('en_st_mob.css');
+					var far = setCss('st_mob.css');
+		 			var prefImg = "background-image: url(src/logotipo_dnar.png);position:absolute;width:26%;height: 26%;margin-left:37%;top:37%;size: contain;background-repeat: no-repeat; background-size: contain;background-position: center center;"
+		 			var prefTitle = "top:36%;position:absolute;font-family: 'Assistant',sans-serif;width: 102vw;font-size: 5.2vw;text-align: center;";
 
 		 			document.getElementById("loadingTitle").style = prefTitle;
-            		document.getElementById("loadingImg").style = prefImg;
-					var foo = setCss('en_st_mob.css');
+					document.getElementById("loadingImg").style = prefImg;
+					document.getElementById("loadText").style = "font-family: 'Assistant', sans-serif;color:#ffffff;width: 100%;font-size:4vw;top: 66%;text-align: center;position: absolute;margin-left: 0;"; 
+					document.getElementById("gif").style = "width: 5vw;height: 5vw;left:48vw;position: absolute;top:60%;"
 					setTimeout(() => {
 						setJs();
 					}, timeout);
-            		setJs();
+            		
 
             }else{
 
             	var foo = setCss('en_st.css');
+				var far = setCss('st.css');
 				
 				setTimeout(() => {
 					setJs();

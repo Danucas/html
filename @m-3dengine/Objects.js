@@ -1,4 +1,6 @@
 function Objects(){
+
+    
     console.log(`Abriendo objects`);
     function round(value, decimals) {
         return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
@@ -327,7 +329,7 @@ function Objects(){
         }
         culling(faces){
           var compV = new Array();
-          //console.log(camara);
+          console.log(this.camara);
           for(var i=0;i<faces.length;i++){
            // console.log(this.transform( [faces[i][0][0],faces[i][0][1], faces[i][0][2]]));
             var c = round(dotProduct(this.camara.pos, new Vector(this.transform( [faces[i][0][0],faces[i][0][1], faces[i][0][2]]))), 2);
@@ -377,7 +379,7 @@ function Objects(){
          rotate(vertice){
     
              var or = this.target;//
-             console.log(or)
+            // console.log(or)
     
              if(this.type=='third-p'){
                var tempx = vertice[0]-or[0];

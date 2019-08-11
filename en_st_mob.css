@@ -7,6 +7,10 @@
 	padding: 0;
 }
 
+:root{
+	--panel-button-size: 10vw;
+}
+
 
 
 
@@ -25,180 +29,190 @@
 }
 
 #meta_AR{
- color: yellow;
- width: 46vw;
- height: 6vw;
- position: absolute;
- margin-top: 94vw;
- font-size: 3.4vw;
- text-align: left;
- font-family: 'Assistant', sans-serif;
- padding-left: 4vw;
- padding-bottom: 1vw;
- background-color: rgba(0, 0, 0, 1);
- text-shadow: 0px 0px 5px rgb(5, 5, 5);
-
-
-
-}
-#contrs{
-	width: 100vw;
-	height: 40vw;
-	margin-top: 60vw;
-
-	position: absolute;
-
-	overflow-y: scroll;
-	overflow-x: hidden;
-
-
-}
-
-#controls_3d{
-  background-color: grey;
-	padding-top: 4vw;
-	min-height: 10vw;
-	height:40vw;
-	width: 100vw;
-
-
-}
-#controls_3d button:hover{
-	cursor: pointer;
-
-}
-#console{
+	color: yellow;
+	width: 18vw;
 	height: 6vw;
-	width: 46vw;
-	margin-top: 94vw;
-	margin-left: 50vw;
-	font-size: 3.2vw;
+	font-size: 1.8vw;
 	text-align: left;
-	position: absolute;
-  font-family: 'Assistant', sans-serif;
-	padding-left: 4vw;
+	font-family: 'Assistant', sans-serif;
+	padding-left: 2vw;
 	padding-bottom: 1vw;
-	color: #ccfc7e;
-	text-shadow: 0px 0px 5px rgb(5, 5, 5);
 	background-color: rgba(0, 0, 0, 1);
-
-}
-.keyCont{
-	width: 28vw;
-	height: 28vw;
-	position: absolute;
-
-	margin-top: 18vw;
-	margin-left: 12vw;
-}
-
-.keyCont button{
-	width: 10vw;
-	height: 10vw;
-	border-style: none;
-	background-color: transparent;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	position: absolute;
-	padding: 2vw;
-
-}
-.zaxis_cont {
-	width: 24vw;
-	height: 18vw;
-	position: absolute;
-
-	margin-top: 2vw;
-	margin-left: 2vw;
-
-}
-.zaxis_cont button{
-	width: 8vw;
-	height: 8vw;
-	border-style: none;
-	background-color: transparent;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	position: absolute;
-	padding: 2vw;
-
-}
-.modo_cont{
-	width: 34vw;
-	height: 10vw;
-	position: absolute;
-	margin-top: 26vw;
-	margin-left: 60vw;
-}
-.modo_cont button{
-	width: 10vw;
-	height: 10vw;
-	border-style: none;
-	background-color: transparent;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	position: absolute;
-	padding: 2vw;
-}
-.focus{
-	width: 34vw;
-	height: 10vw;
-	margin-left: 60vw;
-	position: absolute;
-}
-.focus button{
-	width: 10vw;
-	height: 10vw;
-	background-color: #424240;
-	border-radius: 50vw;
-	border-style: none;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	position: absolute;
-	padding: 2vw;
-
-}
-.toEdit{
-	width: 34vw;
-	height: 10vw;
-	position: absolute;
-	margin-top: 14vw;
-	margin-left: 60vw;
-}
-.toEdit button{
-	width: 10vw;
-	height: 10vw;
-	border-style: none;
-	background-color: transparent;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	position: absolute;
-	padding: 2vw;
-}
-.material{
-	width: 34vw;
-	height: 10vw;
-	position: absolute;
-	margin-top:38vw;
-	margin-left: 60vw;
-}
-.material button{
-	width: 10vw;
-	height: 10vw;
-	border-style: none;
-	background-color: transparent;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	position: absolute;
-	padding: 2vw;
-}
-
+	text-shadow: 0px 0px 5px rgb(5, 5, 5);
+   
+   
+   
+   }
+   
+   #console{
+	   height: 6vw;
+	   width: 18vw;
+	   
+	   font-size: 1.8vw;
+	   text-align: left;
+		
+	 font-family: 'Assistant', sans-serif;
+	   padding-left: 2vw;
+	   padding-bottom: 1vw;
+	   color: #ccfc7e;
+	   text-shadow: 0px 0px 5px rgb(5, 5, 5);
+	   background-color: rgba(0, 0, 0, 1);
+   
+   }
+   #contrs{
+	   
+	   height: 100%;
+	   padding-left: 100%;
+	   
+   
+	   
+   
+   
+	   overflow-y: scroll;
+	   overflow-x: scroll;
+   
+   
+   }
+   
+   #controls_3d{
+	 background-color: grey;
+	 width: 100%;
+	 padding-bottom: 100%;
+	   
+	   overflow: hidden;
+   
+   
+   }
+   #controls_3d button:hover{
+	   cursor: pointer;
+   
+   }
+   
+   .keyCont{
+	   width: auto;
+	   
+	   
+	   
+   }
+   
+   
+   
+   .keyCont button{
+	   width: var(--panel-button-size);
+	   height: var(--panel-button-size);
+	   border-style: none;
+	   background-color: transparent;
+	   background-size: contain;
+	   background-repeat: no-repeat;
+	   background-position: center;
+	   
+	   padding: 1vw;
+   
+   }
+   
+   .motionPanel{
+	   
+	   
+	   display: block;
+	   
+	   
+   
+   }
+   .motionPanel button{
+	   width: var(--panel-button-size);
+	   height: var(--panel-button-size);
+	   border-style: none;
+	   background-color: rgba(10, 10, 10, 0.2);
+	   background-size: contain;
+	   background-repeat: no-repeat;
+	   background-position: center;
+	   
+	   padding: 1vw;
+	   border-radius: 50%;
+	   
+   
+   }
+   .zaxis_cont {
+	   width: var(--panel-button-size);
+	   
+	   
+   
+	   
+   
+   }
+   .zaxis_cont button{
+	   width: var(--panel-button-size);
+	   height: var(--panel-button-size);
+	   border-style: none;
+	   background-color: transparent;
+	   background-size: contain;
+	   background-repeat: no-repeat;
+	   background-position: center;
+	   
+	   padding: 1vw;
+   
+   }
+  
+   .modo_cont button{
+	   width: var(--panel-button-size);
+	   height: var(--panel-button-size);
+	   border-style: none;
+	   background-color: transparent;
+	   background-size: contain;
+	   background-repeat: no-repeat;
+	   background-position: center;
+	   
+	   padding: 2vw;
+   }
+   .focus{
+	   width: 34vw;
+	   
+	   
+	   
+   }
+   .focus button{
+	   width: var(--panel-button-size);
+	   height: var(--panel-button-size);
+	   background-color: #424240;
+	   border-radius: 50vw;
+	   border-style: none;
+	   background-size: contain;
+	   background-repeat: no-repeat;
+	   background-position: center;
+	   
+	   padding: 2vw;
+   
+   }
+   .toEdit{
+	   
+	   
+	   display: block;
+	   
+	   
+   }
+   .toEdit button{
+	   width: var(--panel-button-size);
+	   height: var(--panel-button-size);
+	   border-style: none;
+	   background-color: transparent;
+	   background-size: contain;
+	   background-repeat: no-repeat;
+	   background-position: center;
+	   
+	   padding: 2vw;
+   }
+   
+   .material button{
+	   width: var(--panel-button-size);
+	   height: var(--panel-button-size);
+	   border-style: none;
+	   background-color: transparent;
+	   background-size: contain;
+	   background-repeat: no-repeat;
+	   background-position: center;
+	   
+	   padding: 2vw;
+   }
 #colorPicker{
 	width: 40vw;
 	height: 60vw;
@@ -213,9 +227,8 @@
 #actColor{
 	width: 6vw;
 	height: 6vw;
-	position: absolute;
-	margin-left: 24vw;
-	margin-top: 2vw;
+	
+	
 }
 #saturation{
 	width: 40vw;

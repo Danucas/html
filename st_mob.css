@@ -1,26 +1,43 @@
+:root{
+	--footer-font-size:3vw;
+  --title-font-size:6vw;
+  --terminal-font-size: 2.6vw;
+	--main-max-height: 10%;
+  --main-min-height: 30%;
+  --content-font-size:3.6vw;
+}
+
 body{
+	width: 100vw;
+	height: 100vw;
     background-color: black;
-    display: flex;
-    flex-direction: column;
+    display: block;
+    
     color: azure;
     font-family: "Courier New", Courier, monospace;
-    font-weight: bold;
+	font-weight: bold;
+	overflow: scroll;
 }
 
 article{
     border-style: solid;
     border-color: white;
-    border-width: 0.6vw;
+    border-width: 0.2vw;
     flex: 1;
     background-color: rgba(255,255,255,0.2);
-    color: azure;
-    overflow-y: auto;
-    padding: 1.6vw;
+  color: azure;
+  padding-left: 1vw;
+  padding-right: 1vw;
+	
+	font-size: var(--content-font-size);
+  overflow-y: scroll;
+  overflow-x: hidden;
     
     
 }
 article h1{
   text-align: center;
+  
   
   
 }
@@ -33,33 +50,32 @@ aside{
     flex:2;
     background-color: transparent;
     color: azure;
-    overflow-y: auto;
-    border-width: 0.6vw;
+    overflow: hidden;
+    border-width: 0.2vw;
     border-color: white;
     border-style: solid;
+    padding: 1vw;
+    font-size: var(--content-font-size);
     
-    padding: 1.6vw
+	
+    
 }
 
 main{
-  margin-top: 2vw;
-    flex:auto;
-    display: block;
-    flex-direction: column;
+  
+  
+	max-height: 100vw;
+
+    display: flex;
+    flex-direction: row;
     color: azure;
 
 }
 
-footer{
-  width: 100%;
-  display:block;
-  text-align: center;
-  
-}
-main div{
-  flex:auto;
-    display: flex;
-    flex-direction: row;
+
+.terminal{
+	position: absolute;
+	bottom:2vw;
 }
 
 #terminal{
@@ -67,22 +83,36 @@ main div{
   background-color: rgba(255,255,255,0.2);
   
   
-  padding: 0.8vw;
-  width: 97%;
+  padding: 0.2vw;
+  width: 96vw;
   
   border-style:solid;
   border-color:transparent;
   
+  
   font-family: "Courier New", Courier,monospace;
   color: white;
   overflow-y: scroll;
+  font-size:var(--terminal-font-size);
  
   
 }
-textarea{
-  height:20vw;
+.logo{
+	text-align: center;
+	text-decoration: none;
+}
+.logo img{
+	margin-top:4vw ; 
+	width: 100vw; 
+  height: 20vw;
+  object-fit: contain;
+}
+#historic{
+  height:18vw;
+  width: 96vw;
   background-color: black;
   color:white;
+  font-size: var(--terminal-font-size);
   
 }
 header{
@@ -94,14 +124,17 @@ header{
   background-color: rgba(255,255,255,1);
   border-style: solid;
   border-color: transparent;
-  
+  position: absolute;
+  margin-left: 88vw;
+  margin-top: 2vw;
+  font-size: 6vw;
   text-shadow: 0 0 rgba(255,255,255,0.2);
   
   
 }
 
 #app_title{
-  font-size: 4.6vw;
+  font-size: var(--title-font-size);
   width: 90vw;
   text-align: center;
 }
@@ -145,4 +178,38 @@ header{
 
 .awesomelink{
   color: blueviolet;
+  font-size: var(--footer-font-size);
 }
+
+footer{
+	margin-top: 1.8vw;
+	margin-bottom: 1.2vw;
+	width: 100%;
+	display:block;
+	text-align: center;
+	font-size: var(--footer-font-size);
+	
+  }
+
+
+  ::-webkit-scrollbar{
+    width: 0.6vw;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(77, 129, 44, 0.12);
+}
+
+
+::-webkit-scrollbar-thumb {
+    background:purple;
+    border-radius: 80vw;
+    margin: 0.2vw;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #54b9c8;
+    width: 1.2vw;
+}
+
