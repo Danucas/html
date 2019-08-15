@@ -53,7 +53,7 @@ function engine(){
     var cubo;
     var fi;
     var zoomFactor = 0.004;
-    var t;
+    var ter;
       var gl;
     //camaras y de""mas
 
@@ -63,7 +63,7 @@ function engine(){
       camara.pos.z = 2;
       camara.rotation.z = 3.1416;
       camara.type = 'self';
-      t = this.terminal.writeHistory;
+      ter = this.terminal.writeHistory;
       viewport = new Viewport();
       viewport.pos= {x:0, y:150, z:camara.pos.z+100};
       initialize3dCanvas();
@@ -76,7 +76,7 @@ function engine(){
        camara.pos.y = 0;
        camara.rotation.z = 3.1416;
        camara.type = 'third-p';
-       t(`Object Origin in 3d coordinates:  ${scene[actualObj].getTargetOrigin()}`);
+      //ter(`Object Origin in 3d coordinates:  ${scene[actualObj].getTargetOrigin()}`);
        camara.target = scene[actualObj].getTargetOrigin();
        viewport.pos= {x:0, y:150, z:camara.pos.z+100};
        scene[actualObj].camara = camara;
@@ -315,13 +315,13 @@ function engine(){
                           if(diferenciaY<0){
                             diferenciaY *= -1;
                           }
-                        //  t(x, y,  P, diferenciaX, diferenciaY);
+                        // ter(x, y,  P, diferenciaX, diferenciaY);
 
 
                           if(diferenciaX<20&&diferenciaY<20){
                             //t(P.x+dx, P.y+dy, i);
                             selectedVer = i;
-                            t("selected vert: ", i, Math.round(P.x+dx), Math.round(P.y+dy));
+                           //ter("selected vert: ", i, Math.round(P.x+dx), Math.round(P.y+dy));
 
 
                             break;
@@ -379,18 +379,18 @@ function engine(){
                 if(changedTouch.actual.x<0&&changedTouch.actual.y<0){
 
                   sumTranslate({x:(average), y:(average), z:0});
-                  t('T');
+                 ter('T');
                 }else if(changedTouch.actual.x<0&&changedTouch.actual.y>0){
                   sumTranslate({x:(diffX), y:-(diffY), z:0});
-                  t('M');
+                 ter('M');
 
                 }else if(changedTouch.actual.x>0&&changedTouch.actual.y>0){
 
                     sumTranslate({x:-(average), y:-(average), z:0});
-                  t('H');
+                 ter('H');
                 }else if(changedTouch.actual.x>0&&changedTouch.actual.y<0){
                     sumTranslate({x:-(diffX), y:(diffY), z:0});
-                  t('W');
+                 ter('W');
                 }
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 */
@@ -550,7 +550,7 @@ function engine(){
 
     function load3dObj(name){
       return new Promise((resolve, reject)=>{
-        t(`loading ${name}`);
+       ter(`loading ${name}`);
         var fileName = './@m-3dengine/3dAssets/pan/'+name+'.txt';
         var rawFile = new XMLHttpRequest();
         rawFile.open("GET", fileName, true);
@@ -654,7 +654,7 @@ function engine(){
         context.lineWidth = '1';
         context.clearRect(0, 0, canvas.width, canvas.height);
         //var axis = dibujarWorldAxis(context);
-        t(`Camara pos: ${Object.values(camara.pos)}`);
+       //ter(`Camara pos: ${Object.values(camara.pos)}`);
 
         var objR= Object.values(scene[actualObj].ObjRotation);
         var objT = Object.values(scene[actualObj].ObjTranslation);
@@ -788,7 +788,7 @@ function engine(){
           //t(`Rotation axis distances: ${Object.values(dovs)}`);
           //console.trace();
           var ln  = new Error().stack.split('js:')[1].split(':')[0];
-          t(Object.values(ln));
+         //ter(Object.values(ln));
 
           //Definir angulos de rotacion para los elipses
           var det = dx*0.4;
@@ -827,11 +827,11 @@ function engine(){
           A1P = (Number.isNaN(A1P)) ? 0:A1P;
           A1P = (A1P*(180/Math.PI));
           var AngDis1 = 360-A1+A1P>360?(360-A1+A1P)-360:A1P;
-          t(`Distance 1 Angle: ${AngDis1}`);
+         //ter(`Distance 1 Angle: ${AngDis1}`);
 
 
           //A1 = A1>0?A1:0;
-          t(`First triangle Angle: ${A1}`);
+         //ter(`First triangle Angle: ${A1}`);
           
           //dibujar triangulo
           context.strokeStyle = 'green';
@@ -958,7 +958,7 @@ function engine(){
     }
 
     function drawVertices(){
-      t('dibujando vertices');
+     //ter('dibujando vertices');
 
       context.strokeStyle = 'rgba(247, 182, 17, 1)';
       var vertices =  scene[actualObj].getVertices();
@@ -993,7 +993,7 @@ function engine(){
       }
 
       rendering = false;
-      t('escena renderizada');
+     //ter('escena renderizada');
     }
 
     function nextObj(){
@@ -1001,7 +1001,7 @@ function engine(){
         if(actualObj>scene.length-1){
           actualObj = 0;
         }
-        t(`selected Obj:=> ${scene[actualObj].name}`);
+       //ter(`selected Obj:=> ${scene[actualObj].name}`);
         log.innerHTML= 'selected Obj:=>'+ scene[actualObj].name;
         document.getElementById('actColor').style.backgroundColor = 'rgb('+scene[actualObj].rgb.r+','+scene[actualObj].rgb.g+','+scene[actualObj].rgb.b+')';
     }
@@ -1023,7 +1023,7 @@ function engine(){
 
            }else{
              if(rotar){
-               t('rotando camara');
+              //ter('rotando camara');
                   sumRotate({x:0, y:-0.19625, z:0});
              }else{
                  sumTranslate({x:-1, y: 0, z:0});
@@ -1201,7 +1201,7 @@ function engine(){
                 scalar = false;
               }
               rendering = false;
-              t(`scalar: ${scalar}`);
+             //ter(`scalar: ${scalar}`);
               log.innerHTML = 'scalar..';
               break;
           case 33:
@@ -1219,7 +1219,7 @@ function engine(){
               mover = false;
               scalar = false;
               log.innerHTML = 'rotar..';
-              t(`Rotar ${scene[actualObj].name}`);
+             //ter(`Rotar ${scene[actualObj].name}`);
               rendering = false;
               break;
           case 84:
@@ -1269,7 +1269,7 @@ function engine(){
 
         }else{
           cam = false;
-          t(`${scene[actualObj].name} selected`);
+         //ter(`${scene[actualObj].name} selected`);
           document.getElementById('camFocus').style.backgroundColor = '#424240';
           document.getElementById('objFocus').style.backgroundColor = '#8c8c88';
         }
@@ -1412,7 +1412,7 @@ function engine(){
 
 
     function acelerate(){
-      t('Begin motion');
+      ter('Begin motion');
       scene[actualObj].acceleration = 0.6;
       scene[actualObj].velocity = 0;
       //t(obj.axis[0][2]);
@@ -1473,7 +1473,7 @@ function engine(){
       },fps );
     }
     function motionValues(axis, origin){
-     // t(axis, origin);
+     //ter(axis, origin);
         var xdiff = round(axis[0]-origin[0], 2);
         var ydiff = round(axis[1]-origin[1], 2);
         var zdiff = round(axis[2]-origin[2], 2);
@@ -1516,21 +1516,21 @@ function engine(){
         zcam = round((axis[2]-camDistance)*origin[2], 2);
 
         //valores de la camara
-        t(xcam, ycam, zcam);
-        t(scene[actualObj].getTargetOrigin());
+       ter(xcam, ycam, zcam);
+       ter(scene[actualObj].getTargetOrigin());
         var xc = scene[actualObj].getTargetOrigin()[0]+xcam;
         var yc  = scene[actualObj].getTargetOrigin()[1]+ycam;
         var zc  = scene[actualObj].getTargetOrigin()[2]+zcam;
 
 
-        t({cam: {x: xc  ,y:yc  ,z:zc  }, obj:  {x: xdiff ,y: ydiff ,z:zdiff  } });
+       ter({cam: {x: xc  ,y:yc  ,z:zc  }, obj:  {x: xdiff ,y: ydiff ,z:zdiff  } });
         return {cam: {x: xc  ,y:yc  ,z:zc  }, obj:  {x: xdiff ,y: ydiff ,z:zdiff  } };
         */
     }
 
 
     function stopMotion(){
-      t('Motion stoped');
+     ter('Motion stoped');
       clearInterval(upd);
       frame = 0;
     }

@@ -1,8 +1,16 @@
 :root{
 	--footer-font-size:1.2;
-	--title-font-size:2vw;
+	--title-font-size:4vw;
 	--main-max-height: 10%;
 	--main-min-height: 30%;
+}
+
+
+header h1{
+  text-align: center;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  font-size: 3vw;
 }
 
 body{
@@ -15,6 +23,7 @@ body{
     font-family: "Courier New", Courier, monospace;
 	font-weight: bold;
   overflow: scroll;
+  flex-direction: column;
   
 }
 
@@ -22,7 +31,7 @@ article{
     border-style: solid;
     border-color: white;
     border-width: 0.2vw;
-    flex: 1;
+    flex: 2;
     background-color: rgba(255,255,255,0.2);
   color: azure;
   padding-left: 1vw;
@@ -45,7 +54,7 @@ aside h2{
 }
 
 aside{
-    flex:2;
+    flex:1;
     background-color: transparent;
     color: azure;
     overflow: hidden;
@@ -61,18 +70,19 @@ aside{
 main{
   
   
-	max-height: 50vw;
+	
 
     display: flex;
     flex-direction: row;
     color: azure;
+    flex: auto;
 
 }
 
 
 .terminal{
-	position: absolute;
-	bottom:2vw;
+ width: 100vw;
+ height: 22vw;
 }
 
 #terminal{
@@ -94,11 +104,11 @@ main{
  
   
 }
-.logo{
+.logo_engine{
 	text-align: center;
 	text-decoration: none;
 }
-.logo img{
+.logo_engine img{
 	margin-top:4vw ; 
 	width: 100vw; 
   height: 18vw;
@@ -129,7 +139,8 @@ header{
 
 #app_title{
   font-size: var(--title-font-size);
-  width: 90vw;
+  padding-left: 4vw;
+  padding-right: 4vw;
   text-align: center;
 }
 

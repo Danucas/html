@@ -11,6 +11,14 @@
 	--panel-button-size: 10vw;
 }
 
+aside{
+	max-height: 120vw;
+	overflow-y: scroll;
+}
+body{
+	padding-left: 0vw;
+}
+
 
 
 

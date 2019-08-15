@@ -4,6 +4,7 @@ function Terminal(){
     this.addEventListener = addEventListener;
     this.init = init;
     this.assign = assign;
+    this.initialized= false;
     this.exit = exit;
     this.info = info;
     this.terminal = terminal;
@@ -18,12 +19,14 @@ function Terminal(){
     //console.log(this);
     
     function setContext(gb_context){
-      writeHistory(`global_context assigned`);
+      writeHistory(`Context ${gb_context.constructor.name} assigned`);
       global_context = gb_context;
       return true;
     }
 
     function init(js){
+      if(!this.initialized){
+        this.initialized = true;
         if(setTerminalView()){
             writeHistory(`Terminal version 0.0.1 started`);
             setContext(js);
@@ -31,6 +34,10 @@ function Terminal(){
 					      restartLine();
 			      });
         }
+      }else{
+        writeHistory(`Terminal version 0.0.1 started ALREADY`);
+      }
+      
         
     }
 
@@ -46,7 +53,7 @@ function Terminal(){
     function setTerminalView(){
         var view = `<textarea id="historic" disabled></textarea>
         <input id="terminal" placeholder="type some command">`;
-        var terminalArea = document.getElementsByTagName('TERMINAL')[0];
+        var terminalArea = document.getElementsByTagName('ENGINE-TERMINAL')[0];
         terminalArea.innerHTML = view;
         hs = document.getElementById('historic');
         terminal = document.getElementById('terminal');
@@ -133,7 +140,13 @@ function Terminal(){
       window.open('index.html', '_self');
     }
     function info(){
-      writeHistory(`${Object.getOwnPropertyNames(ct)}`);
+      var pps = Object.getOwnPropertyNames(ct);
+      var line =  `${global_context.constructor.name} functions: `;
+      for(var fn of pps){
+        line += `${fn}`;
+        line +='\n';
+      }
+      writeHistory(line);
       restartLine();
     }
     function commandsManager(e){

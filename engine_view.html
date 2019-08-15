@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>3dEngineReduced</title>
+	<link href="https://www.holbertonschool.com/level2/holberton.css" rel="stylesheet">
 	<meta name="theme-color" content="#c46a46">
 	<meta name="viewport" content="user-scalable=no, width=device-width" />
 	<meta name="google-signin-client_id" content="775057201875-f1mqe945bdqos9ag06s048asckctpfhm.apps.googleusercontent.com">
@@ -15,12 +16,38 @@
 
 </head>
 
-<body style="overflow: hidden;">
+<body >
 	
+		<header>
+                  
+				<h1 style="margin-left: 8vw;">Tweets</h1>
+				<h2 id="app_title">Dnar</h2>
+				 <button id="menu">
+				   =
+				 </button>
+	 
+				 <ul id="menuList">
+				   <li><a href="tweets.html" class="menuitem">Tweets</a></li>
+				   <li><a href="" class="menuitem">Engine</a></li>
+				   <li><a href="" class="menuitem">help</a></li>
+				   <li><a href="" class="menuitem">help</a></li>
+				 </ul>
+				 
+			   </header>
 	
-	<terminal></terminal>
 	<main>
 		<article>
+				<canvas id="canvas3d" color="red"></canvas>
+				<div id="drawing">
+	
+				</div>
+				
+
+				
+				
+	
+		</article>
+		<aside>
 
 				<h1 id="meta_AR">METADATA</h1>
 				<h1 id="console">log</h1>
@@ -79,21 +106,14 @@
 						<div id="actColor" onclick="initColorPicker()"></div>
 	
 				</div>
-
 				
 				
-	
-		</article>
-		<aside>
-				
-				<canvas id="canvas3d" color="red"></canvas>
-				<div id="drawing">
-	
-				</div>
 
 			
 		</aside>
 	</main>
+	<footer >Made by <a href="https://twitter.com/@Danucas1" class="awesomelink" target="_blank">daniel rodriguez</a> for <a  class="awesomelink" href="https://www.holbertonschool.com" target="_blank">Holberton School</a>.</footer>
+	<engine-terminal></engine-terminal>
 	</div>
 	<div id="colorPicker">
 
@@ -148,8 +168,9 @@
             	|| navigator.userAgent.match(/Windows Phone/i)
              	){
 
-					var foo = setCss('en_st_mob.css');
+					
 					var far = setCss('st_mob.css');
+					var foo = setCss('en_st_mob.css');
 		 			var prefImg = "background-image: url(src/logotipo_dnar.png);position:absolute;width:26%;height: 26%;margin-left:37%;top:37%;size: contain;background-repeat: no-repeat; background-size: contain;background-position: center center;"
 		 			var prefTitle = "top:36%;position:absolute;font-family: 'Assistant',sans-serif;width: 102vw;font-size: 5.2vw;text-align: center;";
 
@@ -164,9 +185,9 @@
 
             }else{
 
-            	var foo = setCss('en_st.css');
+            	
 				var far = setCss('st.css');
-				
+				var foo = setCss('en_st.css');
 				setTimeout(() => {
 					setJs();
 					}, timeout);

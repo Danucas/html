@@ -1,21 +1,22 @@
 <!Doctype html>
-    <html>
+    <html lang="es">
         <head>
           <meta charset="UTF-8">
-            <title>holberton appliance test</title>
+          <meta name="viewport" content="width=device-width">
+          <link href="https://www.holbertonschool.com/level2/holberton.css" rel="stylesheet">
+          <title>holberton appliance test</title>
             
         </head>
         
 
-        <body>
+        <body  class="works_on_smartphone">
 
-          <terminal></terminal>
-          <div id="main_cont">
+         
+          
               <header>
-                  <h1 id="app_title">3dEngineReduced</h1>
-                 
-                  <h2></h2>
-                  <h3></h3>
+                  
+                  <h1 style="margin-left: 8vw;">Tweets</h1>
+                  <h2 id="app_title">Dnar</h2>
                    <button id="menu">
                      =
                    </button>
@@ -32,26 +33,39 @@
                  
                    <main>
                        <article>
+                          <h3>Warning!</h3>
                            <p>These are the commonly used commands to work with the engine.<br>
                              We ("tinking as a future developTeam-Company") have built a tool to read, assign and fire properties directly at the Javascript Objects, being this useful for testing an debugging.
-                             <br><br>
-                             --//Terminal Functions//--
-                             <br><br>
-                             StartEngine:  Starts the 3d engine objects and main camera.
-                             <br><br>
-                             assign [object] [value]: assign object values, use -g to target global scope.  
-                             <br><br>
-                             --//Run only at Engine//--
-                             <br><br>
-                             setFPV: Starts the camera at FirstPersonView.
+                             Scroll down to the bottom and you will find it.
+                             
+                             
                            </p>
                            
                        </article>
                     
                        <aside>
-                           <p>starts the 3d engine objects and main camera</p>
-                           <p>starts the 3d engine objects and main camera</p>
-                           <p>starts the 3d engine objects and main camera</p>
+
+                          <br>
+                          --//Terminal Functions//--
+                          <br><br>
+
+
+                          <p>info:  print terminal function names, use -g for global scope</p>
+                          <p>writeHistory [text to print]:  print given parameter</p>
+                          <p>StartEngine:  Starts the 3d engine objects and main camera.</p>
+                          <p>assign [object] [value]: assign object values, use -g to target global scope.</p>
+                          
+                          
+                          --//Run only at Engine//--
+                          <br><br>
+
+                          <p>setFPV: Starts the camera at FirstPersonView.</p>
+                          <p>generateWorld: render some randomly positionated objects.</p>
+                          <p>acelerate: start object motion.</p>
+                          <p>stopMotion: stops object motion.</p>
+
+
+                          
                        </aside>
                    
                        
@@ -60,70 +74,68 @@
                   
                    
                    
-                   <a  class="logo"href="engine_view.html"><img src="src/logotipo_dnar.png"></a>
-                   <footer >
-                     
+                   <a  class="logo_engine" href="engine_view.html"><img src="src/logotipo_dnar.png" alt="."></a>
+                   <footer >Made by <a href="https://twitter.com/@Danucas1" class="awesomelink" target="_blank">daniel rodriguez</a> for <a  class="awesomelink" href="https://www.holbertonschool.com" target="_blank">Holberton School</a>.</footer>
                    
-                     
-                     
-                     Made by <a href="https://twitter.com/@Danucas1" class="awesomelink" target="_blank">daniel rodriguez</a> for <a  class="awesomelink" href="https://www.holbertonschool.com" target="_blank">Holberton School</a>.
-                     
-                   </footer>
+
+                   <engine-terminal></engine-terminal>
                    
-          </div>
+        
+
+          <script >
+            if( navigator.userAgent.match(/Android/i)
+                    || navigator.userAgent.match(/webOS/i)
+                    || navigator.userAgent.match(/iPhone/i)
+                    || navigator.userAgent.match(/iPad/i)
+                    || navigator.userAgent.match(/iPod/i)
+                    || navigator.userAgent.match(/BlackBerry/i)
+                    || navigator.userAgent.match(/Windows Phone/i)
+                     ){
+                 
+  
+                 var foo = setCss('st_mob.css');
+                 setJs();
+      
+            }else{
+              var foo = setCss('st.css');
+              setJs();
+            }
+      
+                  /*if ('serviceWorker' in navigator) {
+                console.log("Will the service worker register?");
+                navigator.serviceWorker.register('service-worker.js')
+                  .then(function(reg){
+                    console.log("Yes, it did.");
+                  }).catch(function(err) {
+                    console.log("No it didn't. This happened: ", err)
+                  });
+              }*/
+                  function setJs(){
+                    var main=document.createElement('script');
+                    main.setAttribute("src", "main.js");
+                    main.setAttribute("type","text/javascript");
+                    document.body.appendChild(main);
+      
+                  }
+      
+      
+               function setCss(filename){
+                  var head = document.getElementsByTagName('head')[0];
+      
+                  var style = document.createElement('link');
+                  style.href = filename;
+                  style.type = 'text/css';
+                  style.rel = 'stylesheet';
+                  head.append(style);
+                  return true;
+              }
+          </script>
           
           
         </body>
 
         
-        <script type="text/javascript">
-          if( navigator.userAgent.match(/Android/i)
-                  || navigator.userAgent.match(/webOS/i)
-                  || navigator.userAgent.match(/iPhone/i)
-                  || navigator.userAgent.match(/iPad/i)
-                  || navigator.userAgent.match(/iPod/i)
-                  || navigator.userAgent.match(/BlackBerry/i)
-                  || navigator.userAgent.match(/Windows Phone/i)
-                   ){
-               
-
-               var foo = setCss('st_mob.css');
-               setJs();
-    
-          }else{
-            var foo = setCss('st.css');
-            setJs();
-          }
-    
-                /*if ('serviceWorker' in navigator) {
-              console.log("Will the service worker register?");
-              navigator.serviceWorker.register('service-worker.js')
-                .then(function(reg){
-                  console.log("Yes, it did.");
-                }).catch(function(err) {
-                  console.log("No it didn't. This happened: ", err)
-                });
-            }*/
-                function setJs(){
-                  var main=document.createElement('script');
-                  main.setAttribute("src", "main.js");
-                  main.setAttribute("type","text/javascript");
-                  document.body.appendChild(main);
-    
-                }
-    
-    
-             function setCss(filename){
-                var head = document.getElementsByTagName('head')[0];
-    
-                var style = document.createElement('link');
-                style.href = filename;
-                style.type = 'text/css';
-                style.rel = 'stylesheet';
-                head.append(style);
-                return true;
-            }
-      </script>
+        
         
         
         
