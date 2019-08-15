@@ -14,7 +14,8 @@ body{
     color: azure;
     font-family: "Courier New", Courier, monospace;
 	font-weight: bold;
-	overflow: scroll;
+  overflow: scroll;
+  
 }
 
 article{
