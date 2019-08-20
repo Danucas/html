@@ -8,8 +8,8 @@ TerminalPromise.then(function(terminalModule){
   
 });
 
-let menuButton = document.getElementById("menu");
-let menushowing=false;
+// let menuButton = document.getElementById("menu");
+// let menushowing=false;
 
 
 
@@ -24,15 +24,15 @@ function init(){
 }
 
 
-menu.addEventListener("click" , abrirMenu);
+// menu.addEventListener("click" , abrirMenu);
 
-function abrirMenu(){
-  let menuList= document.getElementById("menuList");
-  if (!menushowing){
-    menuList.style.display = "block";
-    menushowing=true;
-  }else{
-    menuList.style.display = "none";
-    menushowing = false;
-  }
-}
+// function abrirMenu(){
+//   let menuList= document.getElementById("menuList");
+//   if (!menushowing){
+//     menuList.style.display = "block";
+//     menushowing=true;
+//   }else{
+//     menuList.style.display = "none";
+//     menushowing = false;
+//   }
+// }

@@ -9,6 +9,18 @@
 <body>
 
   <header>
+      <div class="right">
+          <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.facebook.com%2Flinuxfanofficial%2F&layout=button_count&size=small&width=114&height=20&appId" width="114" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+          <a href="https://twitter.com/HolbertonCOL?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @HolbertonCOL</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+
+        <ul id="menuList">
+            <li style="margin-left: 8vw;font-family: 'Courier New', Courier, monospace"><a href="engine_view.html" class="menuitem">Engine</a></li>
+            <li ><a href="ar.html" class="menuitem">AR</a></li>
+            <li><a href="index.html" class="menuitem"> init</a></li>
+           
+
+          </ul>
 
   </header>
   <main>
@@ -21,6 +33,59 @@
 
     </aside>
   </main>
+
+  <footer >Made by <a href="https://twitter.com/@Danucas1" class="awesomelink" target="_blank">daniel rodriguez</a> for <a  class="awesomelink" href="https://www.holbertonschool.com" target="_blank">Holberton School</a>.</footer>
+                   
+
+
+  <script >
+      if( navigator.userAgent.match(/Android/i)
+              || navigator.userAgent.match(/webOS/i)
+              || navigator.userAgent.match(/iPhone/i)
+              || navigator.userAgent.match(/iPad/i)
+              || navigator.userAgent.match(/iPod/i)
+              || navigator.userAgent.match(/BlackBerry/i)
+              || navigator.userAgent.match(/Windows Phone/i)
+               ){
+           
+
+           var foo = setCss('st_mob.css');
+           setJs();
+
+      }else{
+        var foo = setCss('st.css');
+        setJs();
+      }
+
+            /*if ('serviceWorker' in navigator) {
+          console.log("Will the service worker register?");
+          navigator.serviceWorker.register('service-worker.js')
+            .then(function(reg){
+              console.log("Yes, it did.");
+            }).catch(function(err) {
+              console.log("No it didn't. This happened: ", err)
+            });
+        }*/
+            function setJs(){
+              var main=document.createElement('script');
+              main.setAttribute("src", "info.js");
+              main.setAttribute("type","text/javascript");
+              document.body.appendChild(main);
+
+            }
+
+
+         function setCss(filename){
+            var head = document.getElementsByTagName('head')[0];
+
+            var style = document.createElement('link');
+            style.href = filename;
+            style.type = 'text/css';
+            style.rel = 'stylesheet';
+            head.append(style);
+            return true;
+        }
+    </script>
   
 </body>
 </html>

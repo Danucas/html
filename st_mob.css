@@ -62,12 +62,27 @@ article{
     
     
 }
+
+article p{
+  border-style: solid;
+  border-width: 1px;
+  border-color: white; 
+  background-color: rgba(194, 3, 252,0.2);
+  color: white;
+  padding: 16px;
+  border-radius: 12px;
+}
+article p:hover{
+  cursor: pointer;
+}
 article h1{
   text-align: center;
   
   
   
 }
+
+
 aside h2{
   text-align: left;
   
@@ -87,6 +102,12 @@ aside{
 	
     
 }
+
+aside p{
+  background-color: transparent;
+  color: white;
+}
+
 
 main{
   
@@ -173,34 +194,48 @@ header{
   padding-right: 4vw;
   text-align: center;
   margin-left: 4vw;
+  font-family: "Courier New", Courier, monospace;
 }
 
 #menuList{
-  display: none;
-  position: absolute;
-  color:black;
-  background-color: white;
-  width: 50vw;
-  height: auto;
-  text-align: right;
-  margin-left: 45.5vw;
-  margin-top: 10vw;
+  display: flex;
+  align-items: stretch; /* Default */
+  justify-content: space-between;
+  width: 100%;
+  background: #cacaca;
+  margin: 0 0 0 0;
   padding: 0;
-  list-style: none;
+  padding-left: 0;
   
-  font-size: 7vw;
   
 }
 #menuList li{
-  width: 50vw;
+  display: block;
+  flex: 1 auto; /* Default */
+  list-style-type: none;
+  background: #fafafa;
   text-align: center;
-  padding-top: 2vw;
-  padding-bottom: 2vw;
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 4vw;
+  height: auto;
+  
 }
 
 #menuList li:hover{
+  background-color: rgba(194, 3, 252,0.4);
+  color: white;
+  cursor: pointer;
+  color: #ffffff;
+  padding-top: 2.9vw;
+  padding-bottom: 2.9vw;
+  font-size: 4.1vw;
+}
+#menuList li:hover{
   background-color: rgba(0,0,0,0.5);
   color: white;
+  cursor: pointer;
 }
 .menuitem{
   text-decoration: none;

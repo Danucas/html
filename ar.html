@@ -3,8 +3,9 @@
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width">
-          <script src="behavior.js" type="text/javascript"></script>
+          <script src="reality.js" type="text/javascript"></script>
           <link href="https://www.holbertonschool.com/level2/holberton.css" rel="stylesheet">
+          <link href="arst.css" rel="stylesheet">
           <title>holberton appliance test</title>
             
         </head>
@@ -26,13 +27,11 @@
                   <ul id="menuList">
                       <li style="margin-left: 8vw;font-family: 'Courier New', Courier, monospace"><a href="tweets.html" class="menuitem">&#1333;weets</a></li>
                       <li ><a href="engine_view.html" class="menuitem">Dnar</a></li>
-                      <li><a href="ar.html" class="menuitem">AR</a></li>
+                      <li><a href="index.html" class="menuitem"> init</a></li>
                      
 
                     </ul>
-                <h2 ></h2>
-                  <h1 ></h1>
-                  
+                
        
                    
                    
@@ -41,29 +40,10 @@
                  
                    <main>
                        <article>
-
-                          <br>
-                          --//Terminal Functions//--
-                          <br><br>
-
-
-                          <p>info:  print terminal function names, use -g for global scope</p>
-                          <p>writeHistory [text to print]:  print given parameter</p>
-                          <p>StartEngine:  Starts the 3d engine objects and main camera.</p>
-                          <p>assign [object] [value]: assign object values, use -g to target global scope.</p>
-                          
-                          
-                          --//Run only at Engine//--
-                          <br><br>
-
-                          <p>setFPV: Starts the camera at FirstPersonView.</p>
-                          <p>generateWorld: render some randomly positionated objects.</p>
-                          <p>acelerate: start object motion.</p>
-                          <p>stopMotion: stops object motion.</p>
+                         <div style="width: 100%; height: 100%;background-color: red;" id="camera_cont"></div>
+                        
 
                           
-
-                          <img id="smart_thumbnail" src="src/ene.png" class="small">
                           
                            
                        </article>
@@ -71,22 +51,15 @@
                        <aside>
 
                           
-                          <h3 style="padding: 2vw 2vw 2vw 2vw;;">About</h3>
-                           <p style="padding: 2vw 2vw 2vw 2vw;">These are the commonly used commands to work with the engine.<br>
-                             We ("tinking as a future developTeam-Company") have built a tool to read, assign and fire properties directly at the Javascript Objects, being this useful for testing an debugging.
-                             
-                             
-                             
-                           </p>
                            <div id="disqus_thread"></div>
-<script>
-(function() { 
-var d = document, s = d.createElement('script');
-s.src = 'https://dnar-engine.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
+                                <script>
+                                (function() { 
+                                    var d = document, s = d.createElement('script');
+                                    s.src = 'https://dnar-engine.disqus.com/embed.js';
+                                    s.setAttribute('data-timestamp', +new Date());
+                                    (d.head || d.body).appendChild(s);
+                                })();
+                                </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
                            
@@ -120,11 +93,13 @@ s.setAttribute('data-timestamp', +new Date());
                  
   
                  var foo = setCss('st_mob.css');
-                 setJs();
+                 var faa = setCss('arst.css');
+                 //setJs();
       
             }else{
               var foo = setCss('st.css');
-              setJs();
+              var faa = setCss('arst.css');
+              //setJs();
             }
       
                   /*if ('serviceWorker' in navigator) {
@@ -138,7 +113,7 @@ s.setAttribute('data-timestamp', +new Date());
               }*/
                   function setJs(){
                     var main=document.createElement('script');
-                    main.setAttribute("src", "main.js");
+                    main.setAttribute("src", "reality.js");
                     main.setAttribute("type","text/javascript");
                     document.body.appendChild(main);
       
